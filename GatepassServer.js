@@ -163,8 +163,10 @@ app.post('/tagData', async (req, res) => {
 
   try {
     // Fetch student and device information
-    const studentResponse = await axios.get(`https://macts-backend-mobile-app-production.up.railway.app/studentinforDevice`);
-    const deviceResponse = await axios.get(`https://macts-backend-mobile-app-production.up.railway.app/get_deviceForDevice`);
+    // const studentResponse = await axios.get(`https://macts-backend-mobile-app-production.up.railway.app/studentinforDevice`);
+    // const deviceResponse = await axios.get(`https://macts-backend-mobile-app-production.up.railway.app/get_deviceForDevice`);
+    const studentResponse = await axios.get(`https://macts-backend-mobile-app.onrender.com/studentinforDevice`);
+    const deviceResponse = await axios.get(`https://macts-backend-mobile-app.onrender.com/get_deviceForDevice`);
 
     const studentInfo = studentResponse.data[0];
     const studentDevice = deviceResponse.data[0];
@@ -187,7 +189,8 @@ app.post('/tagData', async (req, res) => {
       };
 
       // Insert the data into the database
-      await axios.post('https://macts-backend-mobile-app-production.up.railway.app/Gatepass_history', tapHistory);
+      // await axios.post('https://macts-backend-mobile-app-production.up.railway.app/Gatepass_history', tapHistory);
+      await axios.post('https://macts-backend-mobile-app.onrender.com/Gatepass_history', tapHistory);
       console.log('Tap history recorded successfully');
 
       io.emit('tagData', { tagData, excessiveTap: false });
